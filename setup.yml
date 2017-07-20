@@ -1,0 +1,6 @@
+---
+- name: Create and config tool for vPSA pilot
+  hosts: localhost
+  become: false
+  connection: local
+- include: "{{ lookup('env','PWD') }}/ops/{{ op }}/{{ plat }}-{{module}}/main.yml"

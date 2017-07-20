@@ -1,0 +1,10 @@
+---
+- name: config docker-vpn
+  hosts: "{{ target }}"
+
+  pre_tasks:
+    - debug: msg="Configure container docker-vpn in '{{ target }}'. Host dist{{":"}} '{{ ansible_distribution_release }}'"
+
+  roles:
+    - common
+    - config-vpn

@@ -1,0 +1,33 @@
+- name: Create docker network 'net-psa-vpn'
+  docker_network:
+    name: net-psa-vpn
+    driver: bridge
+    driver_options:
+    ipam_options:
+      subnet: '172.22.200.0/16'
+      gateway: '172.22.200.1'
+      iprange: '172.22.200.0/24'
+
+- name: Copy dockerfile
+  copy:
+    src: ../files/{{container_dist}} 
+    dest: ~/
+
+- name: Build 'docker-vpn' image
+  docker_image:
+    path: "~/{{container_dist}}"
+    name: lconceicao/son-psa-vpn-{{container_dist}}
+    state: present
+    force: yes
+
+- name: Create 'docker-vpn' container
+  docker_container:
+    name: ans-psa-vpn
+    image: lconceicao/son-psa-vpn-{{container_dist}}
+    ports:
+      - "1194:1194/udp"
+    networks:
+      - name: net-psa-vpn
+        ipv4_address: "172.22.200.2"
+        aliases:
+          - psa-vpn

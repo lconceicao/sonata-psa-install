@@ -1,0 +1,11 @@
+---
+- name: create docker-vpn
+  hosts: "{{ target }}"
+  remote_user: root
+  become: true  ## for local handling
+  
+  pre_tasks:
+    - debug: msg="Create docker image for vpn in '{{target}}'. Host dist{{":"}} '{{ansible_distribution}}.{{ansible_distribution_release}}'. Container dist{{":"}} '{{ container_dist }}'"
+
+  roles:
+    - create-docker-vpn
