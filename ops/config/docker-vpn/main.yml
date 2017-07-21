@@ -1,10 +1,15 @@
 ---
+## Configure vpn function that is running in a docker container. The docker host may be local or a remote machine.
+## The ansible host may not have direct connection to the container when the docker host is a remote machine, thus
+## the ansible is always executed from the docker host machine.
+
 - name: config docker-vpn
   hosts: "{{ target }}"
+  remote_user: root
 
   pre_tasks:
     - debug: msg="Configure container docker-vpn in '{{ target }}'. Host dist{{":"}} '{{ ansible_distribution_release }}'"
 
   roles:
-    - common
-    - config-vpn
+    - config-docker-vpn
+

@@ -1,4 +1,6 @@
 ---
+## Builds the vpn docker image and creates a container for it. The docker host may be local or a remote machine.
+
 - name: create docker-vpn
   hosts: "{{ target }}"
   remote_user: root
