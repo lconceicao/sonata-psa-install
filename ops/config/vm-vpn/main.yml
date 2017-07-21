@@ -1,0 +1,13 @@
+---
+## Configure vpn function running on the 'target' host.
+
+- name: config vpn
+  hosts: "{{ target }}"
+  remote_user: root
+
+  pre_tasks:
+    - debug: msg="Configure vpn in host '{{ target }}'"
+
+  roles:
+    - config-common
+    - config-vpn

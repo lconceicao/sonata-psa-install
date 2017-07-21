@@ -24,6 +24,8 @@
   docker_container:
     name: ans-psa-vpn
     image: lconceicao/son-psa-vpn-{{container_dist}}
+    interactive: yes
+    tty: yes
     ports:
       - "1194:1194/udp"
     networks:

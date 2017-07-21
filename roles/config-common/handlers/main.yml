@@ -1,2 +1,2 @@
 - name: start iptables
-  service: name=iptables state=started enabled=yes
+  service: name=iptables.service state=started enabled=yes
